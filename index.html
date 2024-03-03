@@ -10,40 +10,57 @@ Tim Riedel
 Author 2
  
 Further Information:
-http://diystream.cns.utexas.edu/
-
+http://cns.utexas.edu/fri
+ 
 Research Educator:
 Timothy Riedel
 triedel@utexas.edu
  
 Brief Description of Goal of Code:
-blah, blah, blah,
+To diagnose whether or not the patient has a hypothyroidism or hyperthyroidism
  
 Known Issues:
-blah, blah, blah, blah
-Ignore this error message if you see it using the javaScript console: Error with Permissions-Policy header: Origin trial controlled feature not enabled: 'interest-cohort'.
+weight loss, hair loss, rapid heartbeat, and fatigue
 
-References:
 https://www.w3schools.com/w3css/default.asp
 https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-file
 -->
 	
-<head> 
-	<title>Hello World</title>  
-]	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<link rel="stylesheet" href="w3.css">
-	<link rel="stylesheet" href="w3-colors-flat.css">
-</head> 
+   <head> 
+      <title>Hello World</title>  
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <link rel="stylesheet" href="w3.css">
+      <link rel="stylesheet" href="w3-colors-flat.css">
+   </head> 
+
 
 <script>
+	//these are the counters for both hypothyroidism and hyperthyroidism//
+        var hypothyroidism_count = 0;
+        var hyperthyroidism_count = 0;
 
-	//YOUR JAVASCRIPT GOES HERE
+	//if there is one symptom correlating to hypothyroidism, it gets one//
+        function hypothyroidismAdd(){
+            hypothyroidism_count = hypothyroidism_count + 1;
+		//alert(hypothyroidism_count);
 
-</script>	
+        }
+	//if there is one symptom correlating to hyperthyroidism, it gets one//
+        function hyperthyroidismAdd(){
+            hyperthyroidism_count = hyperthyroidism_count + 1;
+        }
+	//the end result is based off the probability from the four answers//
+	function results(){
+		var resultText = document.getElementById("endresults");
+                resultText.innerHTML = "Probability it is allergies =" + ((hypothyroidism_count/4)*100) + "%<br> Probability it is a hyperthyroidism =" + ((hyperthyroidism_count/4)*100)+"%"; 
+	}
 
 
-<!-- THIS STYLE CODE HELPS MAKE YOUR APP LOOK GOOD. PROBABLY DONT MESS WITH IT -->
+  </script>
+
+
+
 <style>	
 .body {
      margin: 0em;
@@ -67,9 +84,81 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 </style>
 
 <body>
+<div id="header" class="w3-container w3-flat-carrot">
+	<h1>hypothyroidism or hyperthyroidism?</h1>
+</div>
 	
-	<!-- HERE IS WHERE ALL OF YOUR HTML PAGES GO -->
-	REPLACE THIS TEXT
+<div id="content" class="w3-container">
+	<p>Are you feeling like you might have a hypothyroidism but wonder if it is hyperthyroidism. Answer a few short questions to find out!</p>
 	
+	<a href="#one" class="w3-btn w3-grey w3-round"> Get Started </a>
+	
+	<p>The following code has been developed by students and/or researchers of the Freshman Research Initiative DIY Diagnostics Stream at The University of Texas at 		Austin.  This code is shared for demonstration purposes and should not be considered a product -- it is for entertainment purposes only. Any user of this code 			does so at their own risk. Members of the DIY Stream, FRI, and The University of Texas system are not liable for anything related to this code.</p>
+ 	
+	<p>THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.</p>
+
+	<!-Question 1 is below and asks about the weight!>
+<div class="page" id="one">
+	<div id="header" class="w3-container w3-flat-carrot">
+		<h1>Question 1</h1>
+	</div>
+	
+    	<div id="content" class="w3-container">
+	<p>Are you experiencing weight loss?</p>    
+	<a href="#two"  onclick="hyperthyroidismAdd();" class="w3-btn w3-black"> Yes</a>
+        <a href="#two"  onclick="hypothyroidismAdd();" class="w3-btn w3-black">No</a>
+ </div>
+	<!-Based off the answer, either hypothyroidism or hyperthyroidism gets a point!>
+	
+	<!-Question 2 is below and asks about the hair!>
+<div class="page" id="two">
+	<div class="w3-container w3-flat-carrot">
+		<h2>Question 2</h2>
+	</div>
+	
+	<div id="content" class="w3-container">
+	<p>Are you experiencing hair loss?</p>    
+	<a href="#three"  onclick="hypothyroidismAdd();" class="w3-btn w3-black"> Yes</a>
+        <a href="#three"  onclick="hyperthyroidismAdd();" class="w3-btn w3-black">No</a>
+	</div>
+ </div>
+	<!-Based off the answer, either hypothyroidism or hyperthyroidism gets a point!>
+	
+	<!-Question 3 is below and asks about heart beat!>
+<div class="page" id="three">
+	<div class="w3-container w3-flat-carrot">
+		<h3>Question 3</h3>
+	</div>
+	
+	<div id="content" class="w3-container">
+	<p>Do you have rapid heartbeat?</p>    
+	<a href="#four"  onclick="hyperthyroidismAdd();" class="w3-btn w3-black"> Yes</a>
+        <a href="#four"  onclick="hypothyroidismAdd();" class="w3-btn w3-black">No</a>
+	</div>
+ </div>
+	<!-Based off the answer, either hypothyroidism or hyperthyroidism gets a point!>
+
+	<!-Question 4 is below and asks about fatigue!>
+<div class="page" id="four">
+	<div class="w3-container w3-flat-carrot">
+		<h4>Question 4</h4>
+	</div>
+	
+	<div id="content" class="w3-container">
+	<p>Are you experiencing fatigue</p>    
+	<a onclick="hypothyroidismAdd();" class="w3-btn w3-black"> Yes</a>
+        <a onclick="hyperthyroidismAdd();" class="w3-btn w3-black">No</a>
+	<!-Based off the answer, either hypothyroidism or hyperthyroidism gets a point!>
+	<a onclick="results();" class="w3-btn w3-black">Click for Results</a>
+		<p id="endresults"></p>
+	
+	</div>
+ </div>
+	<!--results generated>
+	<!--code is complete>
+<footer class="w3-bottom w3-container w3-flat-carrot">
+	<p>DIY!</p>
+</footer>
+
 </body>
 </html>
